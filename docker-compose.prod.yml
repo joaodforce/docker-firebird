@@ -1,12 +1,13 @@
 version: "3"
 services:
   firebird:
-    build: .
+    container_name: "firebirdss"
+    image: docker.pkg.github.com/joaodforce/docker-firebird/firebirdss:2.1
+    restart: always
     expose:
       - 3050
     ports:
       - 3050:3050
-    restart: always
     volumes:
       - /mnt/samba/Databases/:/firebird
     ulimits:
