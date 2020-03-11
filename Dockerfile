@@ -19,6 +19,7 @@ RUN apt-get update \
   && apt-get clean \
   && mkdir -v /firebird \
   && ln -sf /usr/share/zoneinfo/Etc/UTC /etc/localtime \
+  && ln -sf /dev/stdout /opt/firebird/firebird.log \
   && locale-gen C.UTF-8 || true
 
 ENV LANG=C.UTF-8
