@@ -1,23 +1,24 @@
 version: 2.1
 
-build:
-  working_directory: ~/docker-firebird
-  docker:
-    - image: circleci/node:latest
-  steps:
-    - setup_remote_docker
-    - run:
-        name: Docker Login
-        command: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin docker.pkg.github.com
-    - run:
-        name: Build Docker Image
-        command: |
-          docker build -t docker.pkg.github.com/joaodforce/docker-firebird/firebirdss -f build/node/Dockerfile .
-          docker image tag docker.pkg.github.com/joaodforce/docker-firebird/firebirdss docker.pkg.github.com/joaodforce/docker-firebird/firebirdss:2.1
-    - run:
-        name: Push Docker Image to GitHub' Registry
-        command: |
-          docker push docker.pkg.github.com/joaodforce/docker-firebird/firebirdss:2.1
+jobs:
+  build:
+    working_directory: ~/docker-firebird
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - setup_remote_docker
+      - run:
+          name: Docker Login
+          command: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin docker.pkg.github.com
+      - run:
+          name: Build Docker Image
+          command: |
+            docker build -t docker.pkg.github.com/joaodforce/docker-firebird/firebirdss -f build/node/Dockerfile .
+            docker image tag docker.pkg.github.com/joaodforce/docker-firebird/firebirdss docker.pkg.github.com/joaodforce/docker-firebird/firebirdss:2.1
+      - run:
+          name: Push Docker Image to GitHub' Registry
+          command: |
+            docker push docker.pkg.github.com/joaodforce/docker-firebird/firebirdss:2.1
 
 workflows:
   version: 2
