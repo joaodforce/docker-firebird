@@ -29,5 +29,6 @@ COPY firebird.conf /opt/firebird/firebird.conf
 EXPOSE 3050/tcp
 
 VOLUME ["/firebird"]
+VOLUME ["/firebird-dev"]
 
 CMD ["/opt/firebird/bin/fbguard"]
