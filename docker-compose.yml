@@ -6,3 +6,10 @@ services:
       - 3050
     ports:
       - 3050:3050
+    restart: always
+    volumes:
+      - /mnt/samba/Databases/:/firebird
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 100000
